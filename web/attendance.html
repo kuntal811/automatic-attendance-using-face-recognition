@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <title>Admin Panel</title>
+  <script type="text/javascript" src="/eel.js"></script>
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="css/fontawesome-all.css">
+  <!-- Bootstrap core CSS -->
+  <link href="css/bootstrap.min.css" rel="stylesheet">
+  <!-- Design Bootstrap -->
+  <link href="css/bootstrapd.min.css" rel="stylesheet">
+  <!-- Your custom styles (optional) -->
+  <link href="css/style.min.css" rel="stylesheet">
+  <style>
+    .my-custom-scrollbar {
+      position: relative;
+      height: 400px;
+      overflow: auto;
+}
+.table-wrapper-scroll-y {
+      display: block;
+}
+  </style>
+</head>
+
+<body class="grey lighten-3">
+    <div class="se-pre-con">
+      <img src="img/loading1.gif">
+    </div>
+  <!--Main Navigation-->
+  <header>
+
+    <!-- Navbar -->
+    <nav class="navbar fixed-top navbar-expand-lg navbar-light white">
+      <div class="container-fluid text-center">
+        <span class="btn" id="sidebar-show"><i class="fa-1x fas fa-bars"></i></span>
+        <h2 style="width: 100%;">Auto Attendance Using Face Recognition</h2>
+      </div>
+    </nav>
+    <!-- Navbar -->
+
+    <!-- Sidebar -->
+    <div class="sidebar-fixed position-fixed" id="sidebar">
+      <div id="sidebar-hide"><i class="fas fa-times"></i></div>
+      <div class="text-center">
+        <div class="logo-wrapper waves-effect">
+          <img src="img/man.png" class="img-fluid" alt="">
+          <h4 id="admin-name">teacher name</h4>
+          <a href="#" class="text-danger" style="font-size: 14px;" onclick="eel.logout();"><i class="fas fa-power-off"> Logout</i></a>
+        </div>
+      </div>
+        <div class="list-group list-group-flush">
+          <a href="dashboard.html" class="list-group-item list-group-item-action waves-effect">
+            <i class="fas fa-chart-pie mr-3"></i>Dashboard
+          </a>
+          <a href="attendance.html" class="active list-group-item list-group-item-action waves-effect">
+            <i class="fas fa-user mr-3"></i>Attendance</a>
+          <a href="student.html" class="list-group-item list-group-item-action waves-effect">
+            <i class="fas fa-table mr-3"></i>Manage Student</a>
+          <a href="report.html" class="list-group-item list-group-item-action waves-effect">
+            <i class="fas fa-map mr-3"></i>Attendance Report</a>
+        </div>
+    </div>
+    <!-- Sidebar -->
+
+  </header>
+  <!--Main Navigation-->
+
+  <!--Main layout-->
+  <main class="pt-5 mx-lg-5">
+    <div class="container-fluid mt-5">
+      <div class="row">
+        <div class="col-lg-5 col-md-5" id="display">
+          <div class="card">
+              <div class="card-header">
+                Display
+              </div>
+
+              <div class="card-body">
+                Camera Status :
+                <span id="camera-status"></span>
+                <img src="img/display.png" id="video">
+              </div>
+          </div>
+        </div>
+
+        <div class="col-lg-3 col-md-3">
+          <div class="card">
+            <div class="card-header">
+              Attendees
+              <input type="button" value="0" id="attendees-count">
+            </div>
+            <div class="card-body">
+              <div class="table-wrapper-scroll-y my-custom-scrollbar">
+                <table class="table">
+                  <tbody id="attendees">
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+
+
+        <div class="col-lg-4 col-md-4">
+          <div class="card">
+              <div class="card-header">
+                Live Attendance
+              </div>
+
+              <div class="card-body">
+                <form>
+                  <div class="form-group">
+                    <label>Select Class:</label>
+                    <select class="custom-select" id="live-attendance-class">
+                      <option value="">Select Class</option>
+                      <option value="xi">XI</option>
+                      <option value="xii">XII</option>
+                    </select>
+                  </div>
+
+                  <div class="form-group">
+                    <label>Camera Type:</label>
+                    <select class="custom-select" id="camera-type">
+                      <option value="1">Computer Camera</option>
+                      <option value="2">USB Camera</option>
+                      <option value="3">IP Camera</option>
+                    </select>
+                  </div>
+                  <div class="form-group" id="ip-address-group">
+                  <label>IP address:</label>
+                  <input type="text" class="form-control" id="ip-address" placeholder="https or http://192.168.0.2">
+                </div>
+                  <div class="form-group">
+                   <input type="button" class="btn btn-success" value="Start" onclick="start_video();">
+                   <input type="button" class="btn btn-danger" value="Stop" onclick="stop_video();">
+                 </div>
+                  <div class="form-group">
+                    <div class="custom-file">
+                      <input type="file" class="custom-file-input" id="file-upload">
+                      <label class="custom-file-label" id="file-label">Choose Photo</label>
+                      <input type="button" class="btn btn-info" value="Upload" onclick="uploadPhoto();">
+                    </div>
+                  </div>
+
+                </form> 
+              </div>
+          </div>
+
+          <!--<div class="card">
+              <div class="card-header">
+                Attendance using photo
+              </div>
+
+             <div class="card-body">
+                <form>
+                  <input type="file" name="file">
+                </form>
+              </div>
+          </div> -->
+        </div>
+        
+      </div>
+    </div>
+      <!--Grid row-->
+  </main>
+  <!--Main layout-->
+  <!-- SCRIPTS -->
+  <script type="text/javascript" src="js/bootstrap.min.js"></script>
+  <script type="text/javascript" src="main.js"></script>
+  <script type="text/javascript" src="js/attendance.js"></script>
+  <script type="text/javascript" src="js/jQuery2_2_4.js"></script>
+  <script type="text/javascript" src="js/modernizr.js"></script>
+  <script type="text/javascript">
+      $(window).load(function() {
+    // Animate loader off screen
+    $(".se-pre-con").fadeOut("slow");;
+  });
+  </script>
+</body>
+
+</html>

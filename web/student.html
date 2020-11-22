@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <title>Admin Panel</title>
+  <script type="text/javascript" src="/eel.js"></script>
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="css/fontawesome-all.css">
+  <!-- Bootstrap core CSS -->
+  <link href="css/bootstrap.min.css" rel="stylesheet">
+  <!--Design Bootstrap -->
+  <link href="css/bootstrapd.min.css" rel="stylesheet">
+  <!-- Your custom styles (optional) -->
+  <link href="css/style.min.css" rel="stylesheet">
+    <style>
+    .my-custom-scrollbar {
+position: relative;
+height: 350px;
+overflow: auto;
+}
+.table-wrapper-scroll-y {
+display: block;
+}
+  </style>
+</head>
+
+<body class="grey lighten-3">
+  <div class="se-pre-con">
+    <img src="img/loading1.gif">
+  </div>
+  <!--Main Navigation-->
+  <header>
+
+    <!-- Navbar -->
+    <nav class="navbar fixed-top navbar-expand-lg navbar-light white">
+      <div class="container-fluid text-center">
+        <span class="btn" id="sidebar-show"><i class="fa-1x fas fa-bars"></i></span>
+        <h2 style="width:100%;">Auto Attendance Using Face Recognition</h2>
+      </div>
+    </nav>
+    <!-- Navbar -->
+
+    <!-- Sidebar -->
+    <div class="sidebar-fixed position-fixed" id="sidebar">
+      <div id="sidebar-hide"><i class="fas fa-times"></i></div>
+      <div class="text-center">
+        <div class="logo-wrapper waves-effect">
+          <img src="img/man.png" class="img-fluid" alt="">
+          <h4 id="admin-name">teacher name</h4>
+          <a href="#" class="text-danger" style="font-size: 14px;" onclick="eel.logout();"><i class="fas fa-power-off"> Logout</i></a>
+        </div>
+      </div>
+        <div class="list-group list-group-flush">
+          <a href="dashboard.html" class="list-group-item list-group-item-action waves-effect">
+            <i class="fas fa-chart-pie mr-3"></i>Dashboard
+          </a>
+          <a href="attendance.html" class="list-group-item list-group-item-action waves-effect">
+            <i class="fas fa-user mr-3"></i>Attendance</a>
+          <a href="student.html" class="list-group-item active list-group-item-action waves-effect">
+            <i class="fas fa-table mr-3"></i>Manage Student</a>
+          <a href="report.html" class="list-group-item list-group-item-action waves-effect">
+            <i class="fas fa-map mr-3"></i>Attendance Report</a>
+        </div>
+
+    </div>
+    <!-- Sidebar -->
+
+  </header>
+  <!--Main Navigation-->
+
+  <!--Main layout-->
+  <main class="pt-5 mx-lg-5">
+    <div class="container-fluid mt-5">
+      <div class="row">
+        <div class="col-lg-8 col-md-8">
+          <div class="row">
+            <div class="col-lg-12 col-md-12">
+            <div class="card" id="display">
+                <div class="card-header">
+                  <form>
+                    <div class="row">
+                    <div class="col-md-6 col-lg-6">
+                      <div class="form-group">
+                      <select class="custom-select" id="search-class-data">
+                        <option selected>Select Class</option>
+                        <option value="xi">XI</option>
+                        <option value="xii">XII</option>
+                      </select>
+                    </div>
+                    </div>
+                    <div class="col-md-6 col-lg-6">
+                      <a class="btn btn-info" onclick="showStudentDataTable();">Show Data</a>
+                    </div>
+                  </div>
+                </form>
+                </div>
+
+                <div class="card-body">
+                  <div class="table-wrapper-scroll-y my-custom-scrollbar">
+                  <table class="table table-striped">
+                    <thead>
+                      <tr>
+                        <th scope="col">Student ID</th>
+                        <th scope="col">Name</th>
+                        <th scope="col">Class</th>
+                        <th scope="col">Session</th>
+                        <th scope="col">Action</th>
+                      </tr>
+                    </thead>
+                    <tbody id="student-data-table">
+                    </tbody>
+                  </table>
+                </div>
+                </div>
+            </div>
+          </div>
+          <div class="col-lg-6 col-md-6">
+            <div class="card" style="display: none;" id="add-new-student">
+            <div class="card-header">
+              Add New Student
+            </div>
+            <div class="card-body">
+              <form>
+                <div class="form-group">
+                    <label for="student-id">Student ID(Unique):</label>
+                    <input type="text" class="form-control" id="student-id">
+                  </div>
+                  <div class="form-group">
+                    <label for="name">Full Name:</label>
+                    <input type="name" class="form-control" id="name">
+                  </div>
+                  <div class="form-group">
+                      <label>Select Class:</label>
+                      <select class="custom-select" id="student-class">
+                        <option selected>Select Class</option>
+                        <option value="xi">XI</option>
+                        <option value="xii">XII</option>
+                      </select>
+                    </div>
+                  <div class="form-group">
+                    <label for="session">Session:</label>
+                    <input type="number" maxlength="4" class="form-control" id="session">
+                  </div>
+                  <label>Photos(6 Photo):</label>
+                  <div class="row mr-1" id="captured-photo"></div>
+                </form> 
+            </div>
+          </div>
+          </div>
+          <div class="col-lg-6 col-md-6">
+            <div class="card" style="display: none;" id ="add-new-student-photo">
+              <div class="card-header">
+                Capture photo
+              </div>
+              <div class="card-body">
+                <img src="img/display.png" id="video" style="width:245px;height: 200px;">
+                  <form>
+                    <div class="form-group" id="ip-address-group">
+                    <label>IP address(if IP Camera is Used):</label>
+                    <input type="url" class="form-control" id="ip-address" placeholder="https or http://192.168.0.2">
+                    </div>
+                </form>
+                <div class="row" id="add-student-buttons">
+                  <div class = "row">
+                    <div class="col-sm-4 col-md-4">
+                      <input type="button" id="photo-capture-start" class="btn btn-info" value="Start"onclick="startVideoForCapture()">
+                    </div>
+                    <div class="col-sm-4 col-md-4">
+                      <input type="button" id="photo-capture-stop" class="btn btn-danger d-none" value="Stop"onclick="stop_video()">
+                    </div>
+                    <div class="col-sm-4 col-md-4">
+                    <a href="#" id="photo-capture" class="btn btn-info d-none" onclick="capturePhoto()"><i class="fa-2x fas fa-camera"></i></a>
+                    </div>
+                  </div>
+                <input type="button" id="submit-student-data" class="btn btn-success d-none" value="Save Student Data" onclick="stop_video();submitStudentData();">
+                </div>
+                <div id="message"></div>
+              </div>
+          </div>
+        </div>
+        </div><!-- row -->
+        </div><!-- col-md-8 -->
+
+        <div class="col-lg-4 col-md-4">
+          <div class="card">
+              <div class="card-header">
+                Action
+              </div>
+
+              <div class="card-body">
+                <form>
+                  <a href="#" class="btn btn-info"onclick="studentData();">Student Data</a>
+                  <a href="#" class="btn btn-success"onclick="addNewStudent();">Add Student</a>
+                </form> 
+              </div>
+          </div>
+      </div>
+
+          <!--<div class="card">
+              <div class="card-header">
+                Attendance using photo
+              </div>
+
+             <div class="card-body">
+                <form>
+                  <input type="file" name="file">
+                </form>
+              </div>
+          </div> -->
+        </div>
+        
+    </div>
+      <!--Grid row--> 
+  </main>
+  <!--Main layout-->
+  <!-- SCRIPTS -->
+  <!-- JQuery -->
+  <script type="text/javascript" src="js/jquery-3.4.1.min.js"></script>
+  <!-- Bootstrap tooltips -->
+  <script type="text/javascript" src="js/popper.min.js"></script>
+  <!-- Bootstrap core JavaScript -->
+  <script type="text/javascript" src="js/bootstrap.min.js"></script>
+  <script type="text/javascript" src="js/student.js"></script>
+  <script type="text/javascript" src="main.js"></script>
+  <script type="text/javascript" src="js/jQuery2_2_4.js"></script>
+  <script type="text/javascript" src="js/modernizr.js"></script>
+  <script type="text/javascript">
+      $(window).load(function() {
+    // Animate loader off screen
+    $(".se-pre-con").fadeOut("slow");;
+  });
+  </script>
+</body>
+
+</html>

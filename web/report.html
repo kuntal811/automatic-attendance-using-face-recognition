@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <title>Admin Panel</title>
+  <script type="text/javascript" src="/eel.js"></script>
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="css/fontawesome-all.css">
+  <!-- Bootstrap core CSS -->
+  <link href="css/bootstrap.min.css" rel="stylesheet">
+  <!--Design Bootstrap -->
+  <link href="css/bootstrapd.min.css" rel="stylesheet">
+  <!-- Your custom styles (optional) -->
+  <link href="css/style.min.css" rel="stylesheet">
+  <style>
+  </style>
+</head>
+
+<body class="grey lighten-3">
+  <div class="se-pre-con">
+    <img src="img/loading1.gif">
+  </div>
+  <!--Main Navigation-->
+  <header>
+
+    <!-- Navbar -->
+    <nav class="navbar fixed-top navbar-expand-lg navbar-light white">
+      <div class="container-fluid text-center">
+        <span class="btn" id="sidebar-show"><i class="fa-1x fas fa-bars"></i></span>
+        <h2 style="width: 100%;">Auto Attendance Using Face Recognition</h2>
+      </div>
+    </nav>
+    <!-- Navbar -->
+
+    <!-- Sidebar -->
+    <div class="sidebar-fixed position-fixed" id="sidebar">
+      <div id="sidebar-hide"><i class="fas fa-times"></i></div>
+      <div class="text-center">
+        <div class="logo-wrapper waves-effect">
+          <img src="img/man.png" class="img-fluid" alt="">
+          <h4 id="admin-name">teacher name</h4>
+          <a href="#" class="text-danger" style="font-size: 14px;" onclick="eel.logout();"><i class="fas fa-power-off"> Logout</i></a>
+        </div>
+      </div>
+        <div class="list-group list-group-flush">
+          <a href="dashboard.html" class="list-group-item list-group-item-action waves-effect">
+            <i class="fas fa-chart-pie mr-3"></i>Dashboard
+          </a>
+          <a href="attendance.html" class="list-group-item list-group-item-action waves-effect">
+            <i class="fas fa-user mr-3"></i>Attendance</a>
+          <a href="student.html" class="list-group-item list-group-item-action waves-effect">
+            <i class="fas fa-table mr-3"></i>Manage Student</a>
+          <a href="report.html" class="list-group-item active list-group-item-action waves-effect">
+            <i class="fas fa-map mr-3"></i>Attendance Report</a>
+        </div>
+
+    </div>
+    <!-- Sidebar -->
+
+  </header>
+  <!--Main Navigation-->
+
+  <!--Main layout-->
+  <main class="pt-5 mx-lg-5">
+    <div class="container-fluid mt-5">
+      <div class="row">
+        <div class="col-lg-8 col-md-8" id="display">
+          <div class="card">
+              <div class="card-header">
+                <div class="row">
+                  <div class="col-md-8">
+                    Attendance
+                  </div>
+                  <div class="col-md-4">
+                    <a id="downloadLink" onclick="exportF(this)"class="btn btn-info text-right">Download</a>
+                  </div>
+                </div>
+              </div>
+
+              <div class="card-body">
+                <table class="table table-striped" id="table">
+                  <thead>
+                    <tr>
+                      <th scope="col">Student ID</th>
+                      <th scope="col">Full Name</th>
+                      <th scope="col">Class</th>
+                      <th scope="col">Date</th>
+                    </tr>
+                  </thead>
+                  <tbody id="attendance-table">
+                  </tbody>
+                </table>
+              </div>
+          </div>
+        </div>
+
+
+        <div class="col-md-4 col-lg-4">
+          <div class="card">
+            <div class="card-header">
+              Action
+            </div>
+            <div class="card-body">
+              <form id="showAttendance">
+                <div class="form-group">
+                    <label>Select Class:</label>
+                    <select class="custom-select" id="select-class" required>
+                      <option value="">Select Class</option>
+                      <option value="xi">XI</option>
+                      <option value="xii">XII</option>
+                    </select>
+                  </div>
+                  <div class="form-group">
+                      <label for="date-input" class="col-form-label">Date</label>
+                        <input class="form-control" type="text" value="2-4-2020" id="date-input" required>
+                  </div>
+                  <button type="submit" class="btn btn-info" >Show Attendance</button>
+              </form>
+            </div>
+          </div>
+        </div>
+        
+      </div>
+    </div>
+      <!--Grid row-->
+  </main>
+  <!--Main layout-->
+  <!-- SCRIPTS -->
+  <!-- JQuery -->
+  <script type="text/javascript" src="js/jquery-3.4.1.min.js"></script>
+  <!-- Bootstrap tooltips -->
+  <script type="text/javascript" src="js/popper.min.js"></script>
+  <!-- Bootstrap core JavaScript -->
+  <script type="text/javascript" src="js/bootstrap.min.js"></script>
+  <script type="text/javascript" src="js/report.js"></script>
+  <script type="text/javascript" src="main.js"></script>
+  <script type="text/javascript" src="js/jQuery2_2_4.js"></script>
+  <script type="text/javascript" src="js/modernizr.js"></script>
+  <script type="text/javascript">
+      $(window).load(function() {
+    // Animate loader off screen
+    $(".se-pre-con").fadeOut("slow");;
+  });
+  </script>
+</body>
+
+</html>

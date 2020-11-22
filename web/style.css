@@ -1,0 +1,107 @@
+@import url('https://fonts.googleapis.com/css?family=Cabin:400,500,700|Montserrat:400,500,700');
+@import url('https://fonts.googleapis.com/css?family=Geo|Kelly+Slab&display=swap');
+@import 'css/bootstrap.min.css';
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family:  'Kelly Slab', cursive;
+    background-color: #fff;
+    background-image: url('img/bg-img/background3.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+h1,
+h3,
+h4,
+h5,
+h6 {
+    font-family:  'Kelly Slab', cursive;
+    font-weight: 400;
+    color: #000;
+    line-height: 1.2;
+}
+
+p {
+    color: #726a84;
+    font-size: 16px;
+    font-weight: 300;
+    margin-top: 0;
+}
+section{
+}
+.wellcome-heading{
+    width: 100%;
+    text-align: right;
+    color: #07BDE2;
+}
+
+.get-start-area{
+    top: 100%;
+    left: 70%;
+}
+.get-start-area input:hover{
+    background-color: #00505e;
+    color: #0ABEE3;
+}
+.get-start-area input{
+    position: relative;
+    left: 720px;
+    top: 340px;
+    background-color: #00505e;
+    border: 3px solid #0ABEE3;
+    color: #0ABEE3;
+    border-radius: 5px;
+    padding: 5px;
+    margin-right: 5px;
+    font-family: 'Kelly Slab', cursive;
+}
+.photo-place{
+    border: 1px dotted white;
+    width: 360px;
+    height: 275px;
+    position: absolute;
+    top: 80px;
+    left: 653px;
+    border-radius: 16px;
+}
+
+#attendees{
+    background-color: rgba(0,0,0,0.5);
+border: 1px solid transparent;
+    border-radius: 5px;
+    position: absolute;
+    left: 1020px;
+    top:95px;
+    color: #0ABEE3;
+}
+
+.atten{
+color: white;
+    font-size: 25px;
+    text-shadow: 1px 1px #0ABEE3;
+}
+
+
+.photo-upload-div h3{
+    color:#0ABEE3;
+}
+.photo-upload-div{
+    color:#0ABEE3;
+    position: absolute;
+   top: 500px;
+    left: 800px
+}
+.se-pre-con{
+    position: absolute;
+}
+.se-pre-con img{
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+}
