@@ -1,6 +1,6 @@
 import mysql.connector
 import eel
-import MySQLdb
+#import MySQLdb
 from database import *
 
 session = {}

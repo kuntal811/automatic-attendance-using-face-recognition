@@ -9,7 +9,7 @@ import datetime
 import time
 from multiprocessing.pool import ThreadPool
 import mysql.connector
-import MySQLdb
+#import MySQLdb
 from database import *
 
 def recogFace(data,encoding):

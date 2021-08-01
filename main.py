@@ -19,7 +19,8 @@ from SceneChangeDetect import sceneChangeDetect
 import photo
 import login
 import encode_student_data
-
+import warnings
+warnings.filterwarnings('ignore')
 
 eel.init('web')
 
@@ -197,9 +198,11 @@ def stop_video_py():
 @eel.expose
 def photoUpload(b64_string,student_class):
     encoded_data = b64_string.split(',')[1]
-    nparr = np.fromstring(encoded_data.decode('base64'), np.uint8)
+    decoded_data = base64.b64decode(encoded_data)
+    nparr = np.fromstring(decoded_data, np.uint8)
+    #nparr = np.fromstring(encoded_data.decode('base64'), np.uint8)
     img = cv2.imdecode(nparr, cv2.IMREAD_COLOR)
-    photo_string = photo.recognizeFromPhoto(img,student_class)
+    photo.recognizeFromPhoto(img,student_class)
     ##print(photo_string)
     #return photo_string
 @eel.expose
@@ -304,7 +307,7 @@ def fetch_class_data(search_class):
 def delete_student_data_file(student_id):
     #delete face data from file
     #load the face data
-    face_data = pickle.loads(open("encodings.pickle","a+").read())
+    face_data = pickle.loads(open("encodings.pickle","ab+").read())
     index = []
     encodings = face_data['encodings']
     names    = face_data['names']
