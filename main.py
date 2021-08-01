@@ -307,7 +307,8 @@ def fetch_class_data(search_class):
 def delete_student_data_file(student_id):
     #delete face data from file
     #load the face data
-    face_data = pickle.loads(open("encodings.pickle","ab+").read())
+    with open('encodings.pickle', 'rb') as f:
+            face_data = pickle.load(f)
     index = []
     encodings = face_data['encodings']
     names    = face_data['names']
@@ -341,8 +342,8 @@ def deleteStudent(student_id):
         try:
             path = 'dataset/'+student_id
             shutil.rmtree(path)
-        except:
-            pass
+        except Exception as e:
+            print(e)
 
         #delete student data from database
         conn = create_connection()
@@ -357,7 +358,8 @@ def deleteStudent(student_id):
         #delete face data from file
         delete_student_data_file(student_id)
         eel.deleteStatus(student_id)
-    except:
+    except Exception as e:
+        print(e)
         eel.deleteStatus("")
 
 @eel.expose

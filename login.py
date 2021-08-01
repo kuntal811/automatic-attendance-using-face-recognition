@@ -1,4 +1,4 @@
-import mysql.connector
+#import mysql.connector
 import eel
 #import MySQLdb
 from database import *

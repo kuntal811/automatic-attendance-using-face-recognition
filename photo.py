@@ -8,7 +8,7 @@ import os
 import datetime
 import time
 from multiprocessing.pool import ThreadPool
-import mysql.connector
+#import mysql.connector
 #import MySQLdb
 from database import *
 
