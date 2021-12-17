@@ -36,3 +36,12 @@ password: 12345
 Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
 
 Please make sure to update tests as appropriate.
+
+## Screenshots
+<p width="100%">
+<img src="https://raw.githubusercontent.com/kuntal811/automatic-attendance-using-face-recognition/master/screenshots/Screenshot%20from%202020-11-22%2021-06-14.png" />
+<img src="https://raw.githubusercontent.com/kuntal811/automatic-attendance-using-face-recognition/master/screenshots/Screenshot%20from%202020-11-22%2021-06-42.png"/>
+<img src="https://raw.githubusercontent.com/kuntal811/automatic-attendance-using-face-recognition/master/screenshots/Screenshot%20from%202020-11-22%2021-06-44.png"/>
+<img src="https://raw.githubusercontent.com/kuntal811/automatic-attendance-using-face-recognition/master/screenshots/Screenshot%20from%202020-11-22%2021-06-53.png"/>
+<img src="https://raw.githubusercontent.com/kuntal811/automatic-attendance-using-face-recognition/master/screenshots/Screenshot%20from%202020-11-22%2021-08-05.png"/>
+</p>
